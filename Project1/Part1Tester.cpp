@@ -1,49 +1,39 @@
- #include "Queue.h"
- #include <iostream>
- #include <sstream>
- #include <windows.h> // WinApi header - needed for setting console color
+#include "Queue.h"
+#include <iostream>
+#include <sstream>
+// #include <windows.h> // WinApi header - removed for MinGW/g++
 
- using std::cout;
- using std::endl;
+using std::cout;
+using std::endl;
 
- #define GREEN 2
- #define DARK_RED 4
- #define PURPLE 5
- #define YELLOW 6
- #define LIGHT_BLUE 9
- #define LIGHT_GREEN 10
- #define TEAL 11
- #define RED 12
- #define PURPLE 13
- #define LIGHT_YELLOW 14
- #define WHITE 15
+#define GREEN 2
+#define DARK_RED 4
+#define PURPLE 13   // fixed duplicate definition
+#define YELLOW 6
+#define LIGHT_BLUE 9
+#define LIGHT_GREEN 10
+#define TEAL 11
+#define RED 12
+#define LIGHT_YELLOW 14
+#define WHITE 15
 
- void set_console_color(unsigned int color)
- {
- 	// colors are 0=black 1=blue 2=green and so on to 15=white
- 	// colorattribute = foreground + background * 16
- 	// to get red text on yellow use 4 + 14*16 = 228
- 	// light red on yellow would be 12 + 14*16 = 236
- 	// a Dev-C++ tested console application by vegaseat 07nov2004
+void set_console_color(unsigned int color)
+{
+    // Function disabled for MinGW/g++ (colors not supported)
+}
 
- 	HANDLE hConsole;
-
- 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
- 	SetConsoleTextAttribute(hConsole, color);
- }
-
- std::string removeElementsAndGetPrintedQueue(Queue* q)
- {
- 	std::stringstream output;
- 	while (!isEmpty(q))
- 	{
- 		output << dequeue(q) << " ";
- 	}
- 	// removing the last letter (space)
- 	std::string outputString = output.str();
- 	outputString = outputString.substr(0, outputString.length() - 1);
- 	return outputString;
- }
+std::string removeElementsAndGetPrintedQueue(Queue* q)
+{
+    std::stringstream output;
+    while (!isEmpty(q))
+    {
+        output << dequeue(q) << " ";
+    }
+    // removing the last letter (space)
+    std::string outputString = output.str();
+    outputString = outputString.substr(0, outputString.length() - 1);
+    return outputString;
+}
 
  bool test1()
  {
