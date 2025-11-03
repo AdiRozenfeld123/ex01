@@ -1,6 +1,13 @@
 # Prerequisites
 *.d
 
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
 # Compiled Object files
 *.slo
 *.lo
